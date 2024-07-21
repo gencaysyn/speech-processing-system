@@ -1,15 +1,16 @@
 syntax = "proto3";
 
-package transcription;
-
 service TranscriptionService {
-  rpc StreamTranscripts (stream TranscriptRequest) returns (stream TranscriptResponse);
+  rpc StreamTranscription (stream AudioChunk) returns (stream TranscriptionResult) {}
 }
 
-message TranscriptRequest {
-  string audio_file_path = 1;
+message AudioChunk {
+  bytes audio_array = 1;
+  int32 sample_rate = 2;
+  int32 sequence_number = 3;
 }
 
-message TranscriptResponse {
-  string transcript = 1;
+message TranscriptionResult {
+  string text = 1;
+  int32 sequence_number = 2;
 }

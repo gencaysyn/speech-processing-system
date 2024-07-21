@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-import transcription_pb2 as transcription__pb2
+from . import transcription_pb2 as transcription__pb2
 
 GRPC_GENERATED_VERSION = '1.65.1'
 GRPC_VERSION = grpc.__version__
@@ -39,17 +39,17 @@ class TranscriptionServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.StreamTranscripts = channel.stream_stream(
-                '/transcription.TranscriptionService/StreamTranscripts',
-                request_serializer=transcription__pb2.TranscriptRequest.SerializeToString,
-                response_deserializer=transcription__pb2.TranscriptResponse.FromString,
+        self.StreamTranscription = channel.stream_stream(
+                '/TranscriptionService/StreamTranscription',
+                request_serializer=transcription__pb2.AudioChunk.SerializeToString,
+                response_deserializer=transcription__pb2.TranscriptionResult.FromString,
                 _registered_method=True)
 
 
 class TranscriptionServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def StreamTranscripts(self, request_iterator, context):
+    def StreamTranscription(self, request_iterator, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -58,16 +58,16 @@ class TranscriptionServiceServicer(object):
 
 def add_TranscriptionServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'StreamTranscripts': grpc.stream_stream_rpc_method_handler(
-                    servicer.StreamTranscripts,
-                    request_deserializer=transcription__pb2.TranscriptRequest.FromString,
-                    response_serializer=transcription__pb2.TranscriptResponse.SerializeToString,
+            'StreamTranscription': grpc.stream_stream_rpc_method_handler(
+                    servicer.StreamTranscription,
+                    request_deserializer=transcription__pb2.AudioChunk.FromString,
+                    response_serializer=transcription__pb2.TranscriptionResult.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'transcription.TranscriptionService', rpc_method_handlers)
+            'TranscriptionService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('transcription.TranscriptionService', rpc_method_handlers)
+    server.add_registered_method_handlers('TranscriptionService', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
@@ -75,7 +75,7 @@ class TranscriptionService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def StreamTranscripts(request_iterator,
+    def StreamTranscription(request_iterator,
             target,
             options=(),
             channel_credentials=None,
@@ -88,9 +88,9 @@ class TranscriptionService(object):
         return grpc.experimental.stream_stream(
             request_iterator,
             target,
-            '/transcription.TranscriptionService/StreamTranscripts',
-            transcription__pb2.TranscriptRequest.SerializeToString,
-            transcription__pb2.TranscriptResponse.FromString,
+            '/TranscriptionService/StreamTranscription',
+            transcription__pb2.AudioChunk.SerializeToString,
+            transcription__pb2.TranscriptionResult.FromString,
             options,
             channel_credentials,
             insecure,

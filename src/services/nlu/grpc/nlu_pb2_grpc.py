@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-import nlu_pb2 as nlu__pb2
+from . import nlu_pb2 as nlu__pb2
 
 GRPC_GENERATED_VERSION = '1.65.1'
 GRPC_VERSION = grpc.__version__
@@ -39,8 +39,8 @@ class NLUServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.StreamAnalysis = channel.stream_stream(
-                '/nlu.NLUService/StreamAnalysis',
+        self.AnalyzeText = channel.stream_stream(
+                '/nlu.NLUService/AnalyzeText',
                 request_serializer=nlu__pb2.NLURequest.SerializeToString,
                 response_deserializer=nlu__pb2.NLUResponse.FromString,
                 _registered_method=True)
@@ -49,7 +49,7 @@ class NLUServiceStub(object):
 class NLUServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def StreamAnalysis(self, request_iterator, context):
+    def AnalyzeText(self, request_iterator, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -58,8 +58,8 @@ class NLUServiceServicer(object):
 
 def add_NLUServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'StreamAnalysis': grpc.stream_stream_rpc_method_handler(
-                    servicer.StreamAnalysis,
+            'AnalyzeText': grpc.stream_stream_rpc_method_handler(
+                    servicer.AnalyzeText,
                     request_deserializer=nlu__pb2.NLURequest.FromString,
                     response_serializer=nlu__pb2.NLUResponse.SerializeToString,
             ),
@@ -75,7 +75,7 @@ class NLUService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def StreamAnalysis(request_iterator,
+    def AnalyzeText(request_iterator,
             target,
             options=(),
             channel_credentials=None,
@@ -88,7 +88,7 @@ class NLUService(object):
         return grpc.experimental.stream_stream(
             request_iterator,
             target,
-            '/nlu.NLUService/StreamAnalysis',
+            '/nlu.NLUService/AnalyzeText',
             nlu__pb2.NLURequest.SerializeToString,
             nlu__pb2.NLUResponse.FromString,
             options,

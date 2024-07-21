@@ -14,17 +14,17 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13transcription.proto\x12\rtranscription\",\n\x11TranscriptRequest\x12\x17\n\x0f\x61udio_file_path\x18\x01 \x01(\t\"(\n\x12TranscriptResponse\x12\x12\n\ntranscript\x18\x01 \x01(\t2t\n\x14TranscriptionService\x12\\\n\x11StreamTranscripts\x12 .transcription.TranscriptRequest\x1a!.transcription.TranscriptResponse(\x01\x30\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13transcription.proto\"O\n\nAudioChunk\x12\x13\n\x0b\x61udio_array\x18\x01 \x01(\x0c\x12\x13\n\x0bsample_rate\x18\x02 \x01(\x05\x12\x17\n\x0fsequence_number\x18\x03 \x01(\x05\"<\n\x13TranscriptionResult\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x17\n\x0fsequence_number\x18\x02 \x01(\x05\x32V\n\x14TranscriptionService\x12>\n\x13StreamTranscription\x12\x0b.AudioChunk\x1a\x14.TranscriptionResult\"\x00(\x01\x30\x01\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'transcription_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_TRANSCRIPTREQUEST']._serialized_start=38
-  _globals['_TRANSCRIPTREQUEST']._serialized_end=82
-  _globals['_TRANSCRIPTRESPONSE']._serialized_start=84
-  _globals['_TRANSCRIPTRESPONSE']._serialized_end=124
-  _globals['_TRANSCRIPTIONSERVICE']._serialized_start=126
-  _globals['_TRANSCRIPTIONSERVICE']._serialized_end=242
+  _globals['_AUDIOCHUNK']._serialized_start=23
+  _globals['_AUDIOCHUNK']._serialized_end=102
+  _globals['_TRANSCRIPTIONRESULT']._serialized_start=104
+  _globals['_TRANSCRIPTIONRESULT']._serialized_end=164
+  _globals['_TRANSCRIPTIONSERVICE']._serialized_start=166
+  _globals['_TRANSCRIPTIONSERVICE']._serialized_end=252
 # @@protoc_insertion_point(module_scope)

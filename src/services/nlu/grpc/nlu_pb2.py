@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\tnlu.proto\x12\x03nlu\" \n\nNLURequest\x12\x12\n\ntranscript\x18\x01 \x01(\t\"3\n\x0bNLUResponse\x12\x11\n\tsentiment\x18\x01 \x01(\t\x12\x11\n\tintention\x18\x02 \x01(\t2E\n\nNLUService\x12\x37\n\x0eStreamAnalysis\x12\x0f.nlu.NLURequest\x1a\x10.nlu.NLUResponse(\x01\x30\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\tnlu.proto\x12\x03nlu\"3\n\nNLURequest\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x17\n\x0fsequence_number\x18\x02 \x01(\x05\"L\n\x0bNLUResponse\x12\x11\n\tsentiment\x18\x01 \x01(\t\x12\x11\n\tintention\x18\x02 \x01(\t\x12\x17\n\x0fsequence_number\x18\x03 \x01(\x05\x32\x42\n\nNLUService\x12\x34\n\x0b\x41nalyzeText\x12\x0f.nlu.NLURequest\x1a\x10.nlu.NLUResponse(\x01\x30\x01\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -22,9 +22,9 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'nlu_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
   _globals['_NLUREQUEST']._serialized_start=18
-  _globals['_NLUREQUEST']._serialized_end=50
-  _globals['_NLURESPONSE']._serialized_start=52
-  _globals['_NLURESPONSE']._serialized_end=103
-  _globals['_NLUSERVICE']._serialized_start=105
-  _globals['_NLUSERVICE']._serialized_end=174
+  _globals['_NLUREQUEST']._serialized_end=69
+  _globals['_NLURESPONSE']._serialized_start=71
+  _globals['_NLURESPONSE']._serialized_end=147
+  _globals['_NLUSERVICE']._serialized_start=149
+  _globals['_NLUSERVICE']._serialized_end=215
 # @@protoc_insertion_point(module_scope)
