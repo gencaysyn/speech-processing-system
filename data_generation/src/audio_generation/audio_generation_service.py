@@ -3,8 +3,8 @@ from optimum.bettertransformer import BetterTransformer
 from scipy.io.wavfile import write as write_wav
 from transformers import AutoProcessor, BarkModel
 
-from src.services.audio_generation.constants.voice_presets import VoicePresets
-from src.services.common.models.sound_record import SoundRecord
+from data_generation.src.audio_generation.constants.voice_presets import VoicePresets
+from data_generation.src.models.sound_record import SoundRecord
 
 
 class AudioGenerationService:
