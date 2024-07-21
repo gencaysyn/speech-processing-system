@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package transcription;
+
+service TranscriptionService {
+  rpc StreamTranscripts (stream TranscriptRequest) returns (stream TranscriptResponse);
+}
+
+message TranscriptRequest {
+  string audio_file_path = 1;
+}
+
+message TranscriptResponse {
+  string transcript = 1;
+}

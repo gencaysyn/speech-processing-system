@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package nlu;
+
+service NLUService {
+  rpc StreamAnalysis (stream NLURequest) returns (stream NLUResponse);
+}
+
+message NLURequest {
+  string transcript = 1;
+}
+
+message NLUResponse {
+  string sentiment = 1;
+  string intention = 2;
+}
