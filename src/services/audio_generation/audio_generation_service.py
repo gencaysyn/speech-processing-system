@@ -4,7 +4,7 @@ from scipy.io.wavfile import write as write_wav
 from transformers import AutoProcessor, BarkModel
 
 from src.services.audio_generation.constants.voice_presets import VoicePresets
-from src.services.audio_generation.models.sound_record import SoundRecord
+from src.services.common.models.sound_record import SoundRecord
 
 
 class AudioGenerationService:

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+service TranscriptionService {
+  rpc StreamTranscription (stream AudioChunk) returns (stream TranscriptionResult) {}
+}
+
+message AudioChunk {
+  bytes audio_array = 1;
+  int32 sample_rate = 2;
+  int32 sequence_number = 3;
+}
+
+message TranscriptionResult {
+  string text = 1;
+  int32 sequence_number = 2;
+}

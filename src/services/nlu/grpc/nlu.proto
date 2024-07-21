@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package nlu;
+
+service NLUService {
+  rpc AnalyzeText (stream NLURequest) returns (stream NLUResponse);
+}
+
+message NLURequest {
+  string text = 1;
+  int32 sequence_number = 2;
+}
+
+message NLUResponse {
+  string sentiment = 1;
+  string intention = 2;
+  int32 sequence_number = 3;
+}
