@@ -1,3 +1,4 @@
+import os
 import logging
 
 import grpc
@@ -9,30 +10,27 @@ from transcription.src.proto import transcription_pb2
 
 
 def run():
-    # Transcription Service'e bağlan
     channel = grpc.insecure_channel('localhost:50051')
     transcription_stub = transcription_pb2_grpc.TranscriptionServiceStub(channel)
 
-    # NLU Service'e bağlan
     nlu_channel = grpc.insecure_channel('localhost:50052')
     nlu_stub = nlu_pb2_grpc.NLUServiceStub(nlu_channel)
 
     def audio_chunks():
-        # Audio dosyalarını oku ve gönder
-        for i in range(20):  # 20 adım için
-            audio_file = f'test.wav'
-            audio_data, _ = librosa.load(audio_file, sr=16000)
+        files = os.listdir("../data/audio")
+        for f in files:
+            if f.endswith(".wav"):
+                sequence = f.split("_")[0]
+                audio_data, _ = librosa.load(f"../data/audio/{f}", sr=16000)
 
-            yield transcription_pb2.AudioChunk(
-                audio_array=audio_data.tobytes(),
-                sample_rate=16000,
-                sequence_number=i
-            )
+                yield transcription_pb2.AudioChunk(
+                    audio_array=audio_data.tobytes(),
+                    sample_rate=16000,
+                    sequence_number=int(sequence)
+                )
 
-    # Transcription stream'ini başlat
     transcription_stream = transcription_stub.StreamTranscription(audio_chunks())
 
-    # NLU analizi yap ve sonuçları al
     nlu_results = nlu_stub.AnalyzeText(transcription_stream)
 
     for result in nlu_results:
