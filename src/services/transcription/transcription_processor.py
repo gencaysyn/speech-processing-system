@@ -4,7 +4,7 @@ from transformers import WhisperProcessor, WhisperForConditionalGeneration
 from src.services.common.models.sound_record import SoundRecord
 
 
-class TranscriptionService:
+class TranscriptionProcessor:
     def __init__(self):
         self.processor = WhisperProcessor.from_pretrained("openai/whisper-tiny")
         self.model = WhisperForConditionalGeneration.from_pretrained("openai/whisper-tiny")

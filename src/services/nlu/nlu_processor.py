@@ -3,7 +3,7 @@ from typing import List
 from transformers import pipeline
 
 
-class NLUService:
+class NLUProcessor:
     def __init__(self):
         self.zeroshot_classifier = pipeline("zero-shot-classification",
                                             model="MoritzLaurer/deberta-v3-large-zeroshot-v2.0")
