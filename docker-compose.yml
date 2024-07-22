@@ -7,6 +7,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "50051:50051"
+    volumes:
+      - ./ssl:/app/ssl
     networks:
       - speech-processing-network
 
@@ -16,6 +18,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "50052:50052"
+    volumes:
+      - ./ssl:/app/ssl
     networks:
       - speech-processing-network
 
