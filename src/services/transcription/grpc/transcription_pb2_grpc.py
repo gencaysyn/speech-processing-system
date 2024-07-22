@@ -19,10 +19,10 @@ except ImportError:
 
 if _version_not_supported:
     warnings.warn(
-        f'The proto package installed is at version {GRPC_VERSION},'
+        f'The grpc package installed is at version {GRPC_VERSION},'
         + f' but the generated code in transcription_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
-        + f' Please upgrade your proto module to grpcio>={GRPC_GENERATED_VERSION}'
+        + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
         + f' This warning will become an error in {EXPECTED_ERROR_RELEASE},'
         + f' scheduled for release on {SCHEDULED_RELEASE_DATE}.',
@@ -37,7 +37,7 @@ class TranscriptionServiceStub(object):
         """Constructor.
 
         Args:
-            channel: A proto.Channel.
+            channel: A grpc.Channel.
         """
         self.StreamTranscription = channel.stream_stream(
                 '/TranscriptionService/StreamTranscription',
