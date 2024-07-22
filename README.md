@@ -46,8 +46,8 @@ Both services communicate via gRPC and use SSL/TLS for secure communication.
    ```
 
    Note: Make sure to create an `ssl.conf` file with appropriate configurations before running these commands.
-
-3. Build and run the services:
+3. Place models in service folders (`nlu/model` and `transcription/model`)
+4. Build and run the services:
    ```bash
    docker-compose up --build
    ```
@@ -68,16 +68,18 @@ Example client usage (pseudo-code):
 transcription_stub = create_secure_channel('localhost:50051')
 
 # Send audio data
-transcript = transcription_stub.Transcribe(audio_data)
+transcription_stream = transcription_stub.StreamTranscription(audio_data)
 
 # Connect to NLU Service
 nlu_stub = create_secure_channel('localhost:50052')
 
 # Send transcript for analysis
-analysis = nlu_stub.Analyze(transcript)
+nlu_results = nlu_stub.AnalyzeText(transcription_stream)
 
-print(f"Sentiment: {analysis.sentiment}")
-print(f"Intent: {analysis.intent}")
+for result in nlu_results:
+  print(f"Sequence: {result.sequence_number}, "
+        f"Sentiment: {result.sentiment}, "
+        f"Intention: {result.intention}")
 ```
 
 ## Development
