@@ -4,9 +4,8 @@ import logging
 import grpc
 import librosa
 
-from nlu.src.proto import nlu_pb2_grpc
-from transcription.src.proto import transcription_pb2_grpc
-from transcription.src.proto import transcription_pb2
+from src.services.nlu.grpc import nlu_pb2_grpc
+from src.services.transcription.grpc import transcription_pb2_grpc, transcription_pb2
 
 
 def run():
