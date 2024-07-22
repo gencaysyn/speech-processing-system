@@ -6,7 +6,8 @@ from transformers import pipeline
 class NLUProcessor:
     def __init__(self):
         self.zeroshot_classifier = pipeline("zero-shot-classification",
-                                            model="MoritzLaurer/deberta-v3-large-zeroshot-v2.0")
+                                            model="./model",
+                                            tokenizer="./model")
 
     def analyze(self, text: str, hypothesis_template: str, classes_verbalized: List[str]) -> str:
         output = self.zeroshot_classifier(text, classes_verbalized, hypothesis_template=hypothesis_template,

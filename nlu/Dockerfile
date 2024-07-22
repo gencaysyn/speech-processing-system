@@ -6,6 +6,9 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 ENV GRPC_VERBOSITY=ERROR
+ENV LOG_LEVEL=INFO
 
-COPY src .
-CMD ["python", "server.py"]
+COPY model model
+COPY src src
+
+CMD ["python", "src/server.py"]
