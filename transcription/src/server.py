@@ -3,11 +3,11 @@ from concurrent import futures
 import grpc
 import numpy as np
 
-from transcription.src.models.sound_record import SoundRecord
-from transcription.src.proto import transcription_pb2
-from transcription.src.proto.transcription_pb2_grpc import TranscriptionServiceServicer, \
+from models.sound_record import SoundRecord
+from proto import transcription_pb2
+from proto.transcription_pb2_grpc import TranscriptionServiceServicer, \
     add_TranscriptionServiceServicer_to_server
-from transcription.src.transcription_processor import TranscriptionProcessor
+from transcription_processor import TranscriptionProcessor
 
 
 class TranscriptionService(TranscriptionServiceServicer):

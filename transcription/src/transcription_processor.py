@@ -1,7 +1,7 @@
 import librosa
 from transformers import WhisperProcessor, WhisperForConditionalGeneration
 
-from transcription.src.models.sound_record import SoundRecord
+from models.sound_record import SoundRecord
 
 
 class TranscriptionProcessor:
