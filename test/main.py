@@ -1,18 +1,32 @@
-import os
 import logging
+import os
 
 import grpc
 import librosa
 
-from src.services.nlu.grpc import nlu_pb2_grpc
-from src.services.transcription.grpc import transcription_pb2_grpc, transcription_pb2
+from nlu.src.proto import nlu_pb2_grpc
+from transcription.src.proto import transcription_pb2
+from transcription.src.proto import transcription_pb2_grpc
 
 
 def run():
-    channel = grpc.insecure_channel('localhost:50051')
+    with open('../ssl/ca.cert', 'rb') as f:
+        ca_cert = f.read()
+    with open('../ssl/client.key', 'rb') as f:
+        client_key = f.read()
+    with open('../ssl/client.cert', 'rb') as f:
+        client_cert = f.read()
+
+    credentials = grpc.ssl_channel_credentials(
+        root_certificates=ca_cert,
+        private_key=client_key,
+        certificate_chain=client_cert
+    )
+
+    channel = grpc.secure_channel('localhost:50051', credentials)
     transcription_stub = transcription_pb2_grpc.TranscriptionServiceStub(channel)
 
-    nlu_channel = grpc.insecure_channel('localhost:50052')
+    nlu_channel = grpc.secure_channel('localhost:50052', credentials)
     nlu_stub = nlu_pb2_grpc.NLUServiceStub(nlu_channel)
 
     def audio_chunks():

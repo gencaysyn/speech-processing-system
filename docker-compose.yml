@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  transcription-service:
+    build:
+      context: ./transcription
+      dockerfile: Dockerfile
+    ports:
+      - "50051:50051"
+    volumes:
+      - ./ssl:/app/ssl
+    networks:
+      - speech-processing-network
+
+  nlu-service:
+    build:
+      context: ./nlu
+      dockerfile: Dockerfile
+    ports:
+      - "50052:50052"
+    volumes:
+      - ./ssl:/app/ssl
+    networks:
+      - speech-processing-network
+
+networks:
+  speech-processing-network:
+    driver: bridge

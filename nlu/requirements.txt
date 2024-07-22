@@ -1,0 +1,6 @@
+transformers~=4.42.4
+datasets~=2.20.0
+scipy~=1.14.0
+optimum~=1.21.2
+numpy~=1.26.4
+grpcio

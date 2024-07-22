@@ -3,11 +3,12 @@ from concurrent import futures
 import grpc
 import numpy as np
 
-from src.services.common.models.sound_record import SoundRecord
-from src.services.transcription.grpc import transcription_pb2
-from src.services.transcription.grpc.transcription_pb2_grpc import TranscriptionServiceServicer, \
+from models.sound_record import SoundRecord
+from proto import transcription_pb2
+from proto.transcription_pb2_grpc import TranscriptionServiceServicer, \
     add_TranscriptionServiceServicer_to_server
-from src.services.transcription.transcription_processor import TranscriptionProcessor
+from transcription_processor import TranscriptionProcessor
+import grpc_ssl_config
 
 
 class TranscriptionService(TranscriptionServiceServicer):
@@ -29,10 +30,11 @@ class TranscriptionService(TranscriptionServiceServicer):
 
 
 def serve():
+    server_credentials = grpc_ssl_config.get_ssl_server_credentials()
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     add_TranscriptionServiceServicer_to_server(
         TranscriptionService(), server)
-    server.add_insecure_port('[::]:50051')
+    server.add_secure_port('[::]:50051', server_credentials)
     server.start()
     server.wait_for_termination()
 

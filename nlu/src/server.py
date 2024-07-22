@@ -2,9 +2,11 @@ from concurrent import futures
 
 import grpc
 
-from src.services.nlu.grpc import nlu_pb2, nlu_pb2_grpc
-from src.services.nlu.grpc.nlu_pb2_grpc import NLUServiceServicer
-from src.services.nlu.nlu_processor import NLUProcessor
+from nlu_processor import NLUProcessor
+from proto import nlu_pb2
+from proto import nlu_pb2_grpc
+from proto.nlu_pb2_grpc import NLUServiceServicer
+import grpc_ssl_config
 
 
 class NLUService(NLUServiceServicer):
@@ -24,10 +26,11 @@ class NLUService(NLUServiceServicer):
 
 
 def serve():
+    server_credentials = grpc_ssl_config.get_ssl_server_credentials()
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     nlu_pb2_grpc.add_NLUServiceServicer_to_server(
         NLUService(), server)
-    server.add_insecure_port('[::]:50052')
+    server.add_secure_port('[::]:50052', server_credentials)
     server.start()
     server.wait_for_termination()
 
