@@ -46,8 +46,8 @@ Both services communicate via gRPC and use SSL/TLS for secure communication.
    ```
 
    Note: Make sure to create an `ssl.conf` file with appropriate configurations before running these commands.
-
-3. Build and run the services:
+3. Place models in service folders (`nlu/model` and `transcription/model`)
+4. Build and run the services:
    ```bash
    docker-compose up --build
    ```
