@@ -7,7 +7,7 @@ from models.sound_record import SoundRecord
 class TranscriptionProcessor:
     def __init__(self):
         self.processor = WhisperProcessor.from_pretrained("openai/whisper-tiny")
-        self.model = WhisperForConditionalGeneration.from_pretrained("openai/whisper-tiny")
+        self.model = WhisperForConditionalGeneration.from_pretrained(pretrained_model_name_or_path="./model")
         self.model.config.forced_decoder_ids = None
 
     def audio_to_text(self, sound_record: SoundRecord) -> str:
@@ -23,4 +23,3 @@ class TranscriptionProcessor:
     def read_audio(self, file_name: str) -> SoundRecord:
         audio_array, sample_rate = librosa.load(file_name, sr=16000)
         return SoundRecord(audio_array=audio_array, sample_rate=sample_rate)
-
