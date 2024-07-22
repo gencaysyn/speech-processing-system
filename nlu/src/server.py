@@ -2,9 +2,10 @@ from concurrent import futures
 
 import grpc
 
-from src.services.nlu.grpc import nlu_pb2, nlu_pb2_grpc
-from src.services.nlu.grpc.nlu_pb2_grpc import NLUServiceServicer
-from src.services.nlu.nlu_processor import NLUProcessor
+from proto import nlu_pb2_grpc
+from proto import nlu_pb2
+from proto.nlu_pb2_grpc import NLUServiceServicer
+from nlu_processor import NLUProcessor
 
 
 class NLUService(NLUServiceServicer):
