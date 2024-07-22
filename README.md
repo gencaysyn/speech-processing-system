@@ -68,16 +68,18 @@ Example client usage (pseudo-code):
 transcription_stub = create_secure_channel('localhost:50051')
 
 # Send audio data
-transcript = transcription_stub.Transcribe(audio_data)
+transcription_stream = transcription_stub.StreamTranscription(audio_data)
 
 # Connect to NLU Service
 nlu_stub = create_secure_channel('localhost:50052')
 
 # Send transcript for analysis
-analysis = nlu_stub.Analyze(transcript)
+nlu_results = nlu_stub.AnalyzeText(transcription_stream)
 
-print(f"Sentiment: {analysis.sentiment}")
-print(f"Intent: {analysis.intent}")
+for result in nlu_results:
+  print(f"Sequence: {result.sequence_number}, "
+        f"Sentiment: {result.sentiment}, "
+        f"Intention: {result.intention}")
 ```
 
 ## Development
