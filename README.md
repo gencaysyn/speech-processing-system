@@ -92,11 +92,13 @@ speech-processing-system/
 ├── transcription/
 │   ├── Dockerfile
 │   ├── requirements.txt
+│   ├── model
 │   └── src/
 │       └── server.py
 ├── nlu/
 │   ├── Dockerfile
 │   ├── requirements.txt
+│   ├── model
 │   └── src/
 │       └── server.py
 └── ssl/
