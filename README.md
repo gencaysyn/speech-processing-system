@@ -43,8 +43,6 @@ Both services communicate via gRPC and use SSL/TLS for secure communication.
    openssl genrsa -out client.key 4096
    openssl req -new -key client.key -out client.csr -config ssl.conf
    openssl x509 -req -in client.csr -CA ca.cert -CAkey ca.key -CAcreateserial -out client.cert -days 365 -sha256 -extfile ssl.conf -extensions req_ext
-
-   cd ..
    ```
 
    Note: Make sure to create an `ssl.conf` file with appropriate configurations before running these commands.

@@ -15,14 +15,14 @@ class NLUProcessor:
         mapped_list = list(zip(output["labels"], output["scores"]))
         return max(mapped_list, key=lambda x: x[1])[0]
 
-    def get_intention(self, text: str,
+    def get_sentiment(self, text: str,
                       hypothesis_template: str = "Sentiment of this text is {}.",
                       classes_verbalized: List[str] = None) -> str:
         if classes_verbalized is None:
             classes_verbalized = ["positive", "negative", "neutral"]
         return self.analyze(text, hypothesis_template, classes_verbalized)
 
-    def get_sentiment(self, text: str, hypothesis_template: str = "Intention of this text is {}.",
+    def get_intention(self, text: str, hypothesis_template: str = "Intention of this text is {}.",
                       classes_verbalized: List[str] = None) -> str:
         if classes_verbalized is None:
             classes_verbalized = ["change_package", "upgrade", "learn_price", "product_detail"]
