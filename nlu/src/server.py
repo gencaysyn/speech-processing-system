@@ -4,15 +4,16 @@ from concurrent import futures
 
 import grpc
 
+import grpc_ssl_config
 from nlu_processor import NLUProcessor
 from proto import nlu_pb2
 from proto import nlu_pb2_grpc
 from proto.nlu_pb2_grpc import NLUServiceServicer
-import grpc_ssl_config
 
 log_level = os.getenv('LOG_LEVEL', 'ERROR').upper()
 logging.basicConfig(level=getattr(logging, log_level))
 logger = logging.getLogger(__name__)
+
 
 class NLUService(NLUServiceServicer):
     def __init__(self):
