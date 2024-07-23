@@ -5,12 +5,12 @@ from concurrent import futures
 import grpc
 import numpy as np
 
+import grpc_ssl_config
 from models.sound_record import SoundRecord
 from proto import transcription_pb2
 from proto.transcription_pb2_grpc import TranscriptionServiceServicer, \
     add_TranscriptionServiceServicer_to_server
 from transcription_processor import TranscriptionProcessor
-import grpc_ssl_config
 
 log_level = os.getenv('LOG_LEVEL', 'ERROR').upper()
 logging.basicConfig(level=getattr(logging, log_level))
